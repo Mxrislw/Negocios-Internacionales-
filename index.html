@@ -102,6 +102,115 @@
       el.classList.add('bloqueado');
     }
   }
+
+<script>
+  const dependencias = {
+    "nivel-mate": ["mate1", "eco1"],
+    "nivel-info": ["fund-finanzas"],
+    "nivel-lenguaje": ["leng1"],
+    "mate1": ["mate-neg", "estadistica1"],
+    "eco1": ["eco2"],
+    "leng1": ["leng2"],
+    "fund-conta": ["conta-fin"],
+    "fund-empresariales": ["diseno-org"],
+    "eco2": ["teoria-com"],
+    "leng2": ["procesos-sociales", "procesos-sociales2"],
+    "conta-fin": ["conta-decisiones"],
+    "estadistica1": ["analitica-datos", "finanzas1"],
+    "diseno-org": ["fund-econ-org", "innovacion", "dir-estrategica"],
+    "teoria-com": ["fund-econ-org", "int-affairs"],
+    "fund-finanzas": ["finanzas1"],
+    "analitica-datos": ["multivariado", "admin-comercio"],
+    "fund-econ-org": ["gestion-oferta", "admin-comercio"],
+    "multivariado": ["sistemas-info", "dir-empresas"],
+    "marketing": ["inv-mercados"],
+    "finanzas1": ["dir-estrategica", "int-finance"],
+    "admin-comercio": ["logistica", "dir-empresas", "derecho", "cross-cultural"],
+    "gestion-oferta": ["logistica", "dir-empresas", "derecho"],
+    "inv-mercados": ["gestion-global"],
+    "int-affairs": ["cross-cultural", "negociaciones"],
+    "dir-empresas": ["negociaciones", "gestion-global"],
+    "cross-cultural": ["hr-management", "estrategias"],
+    "gestion-global": ["inv-aplicada", "estrategias"],
+    "dir-estrategica": ["estrategias"],
+    "negociaciones": ["estrategias", "business-plan"],
+    "hr-management": ["business-plan"],
+    "int-finance": ["business-plan"],
+    "conta-decisiones": ["business-plan"]
+  };
+
+  const requisitos = {};
+
+  // Revertimos dependencias para armar requisitos
+  Object.entries(dependencias).forEach(([clave, lista]) => {
+    lista.forEach(dep => {
+      if (!requisitos[dep]) requisitos[dep] = [];
+      requisitos[dep].push(clave);
+    });
+  });
+
+  // Inicializa cursos sin requisitos como desbloqueados
+  window.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".curso").forEach((curso) => {
+      const id = curso.id;
+      if (!requisitos[id]) {
+        curso.classList.remove("bloqueado");
+        curso.classList.add("desbloqueado");
+      }
+    });
+  });
+
+  function toggleEstado(el) {
+    const id = el.id;
+
+    if (el.classList.contains('bloqueado')) return;
+
+    if (el.classList.contains('desbloqueado')) {
+      el.classList.remove('desbloqueado');
+      el.classList.add('encurso');
+    } else if (el.classList.contains('encurso')) {
+      el.classList.remove('encurso');
+      el.classList.add('completado');
+      actualizarDependientes(id);
+    } else if (el.classList.contains('completado')) {
+      el.classList.remove('completado');
+      el.classList.add('desbloqueado');
+      bloquearDependientesSiCorresponde(id);
+    }
+  }
+
+  function actualizarDependientes(idCumplido) {
+    const dependientes = dependencias[idCumplido] || [];
+    dependientes.forEach(depId => {
+      const reqs = requisitos[depId] || [];
+      const cumpleTodos = reqs.every(reqId => {
+        const el = document.getElementById(reqId);
+        return el && el.classList.contains("completado");
+      });
+      const curso = document.getElementById(depId);
+      if (cumpleTodos && curso.classList.contains("bloqueado")) {
+        curso.classList.remove("bloqueado");
+        curso.classList.add("desbloqueado");
+      }
+    });
+  }
+
+  function bloquearDependientesSiCorresponde(idDesmarcado) {
+    const dependientes = dependencias[idDesmarcado] || [];
+    dependientes.forEach(depId => {
+      const reqs = requisitos[depId] || [];
+      const cumpleTodos = reqs.every(reqId => {
+        const el = document.getElementById(reqId);
+        return el && el.classList.contains("completado");
+      });
+      const curso = document.getElementById(depId);
+      if (!cumpleTodos && !curso.classList.contains("bloqueado")) {
+        curso.className = "curso bloqueado";
+      }
+    });
+  }
+</script>
+
 </script>
 </body>
 </html>
