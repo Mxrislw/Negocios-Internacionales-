@@ -141,7 +141,6 @@
 
   const requisitos = {};
 
-  // Revertimos dependencias para armar requisitos
   Object.entries(dependencias).forEach(([clave, lista]) => {
     lista.forEach(dep => {
       if (!requisitos[dep]) requisitos[dep] = [];
@@ -149,7 +148,6 @@
     });
   });
 
-  // Inicializa cursos sin requisitos como desbloqueados
   window.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".curso").forEach((curso) => {
       const id = curso.id;
@@ -188,7 +186,7 @@
         return el && el.classList.contains("completado");
       });
       const curso = document.getElementById(depId);
-      if (cumpleTodos && curso.classList.contains("bloqueado")) {
+      if (curso && cumpleTodos && curso.classList.contains("bloqueado")) {
         curso.classList.remove("bloqueado");
         curso.classList.add("desbloqueado");
       }
@@ -204,7 +202,7 @@
         return el && el.classList.contains("completado");
       });
       const curso = document.getElementById(depId);
-      if (!cumpleTodos && !curso.classList.contains("bloqueado")) {
+      if (curso && !cumpleTodos && !curso.classList.contains("bloqueado")) {
         curso.className = "curso bloqueado";
       }
     });
