@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Negocios Internacionales - Mari</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4fbff;
+      color: #2a3f5f;
+      margin: 0;
+      padding: 2rem;
+      position: relative;
+    }
+    .logo-up {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 70px;
+    }
+    h1 {
+      text-align: center;
+      color: #245d9e;
+      font-size: 3rem;
+      margin-bottom: 2.5rem;
+      letter-spacing: 1px;
+    }
+    .ciclo {
+      margin-bottom: 3rem;
+      border-left: 5px solid #a7d3f4;
+      padding-left: 1rem;
+    }
+    .ciclo h2 {
+      color: #3675a9;
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+    .curso {
+      position: relative;
+      padding: 1rem 1.2rem;
+      margin: 0.5rem 0;
+      border-radius: 12px;
+      font-size: 1rem;
+      box-shadow: 0 3px 6px rgba(173, 216, 230, 0.3);
+      transition: 0.3s;
+    }
+    .bloqueado {
+      background-color: #d7e9f5;
+      color: #7a8a99;
+      text-decoration: line-through;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+    .desbloqueado {
+      background-color: #eaf6ff;
+      cursor: pointer;
+    }
+    .desbloqueado:hover {
+      background-color: #cfefff;
+    }
+    .encurso {
+      background-color: #bcdff1;
+      border: 2px dashed #5ba3c9;
+    }
+    .completado {
+      background-color: #a5cbe3;
+      text-decoration: line-through;
+      font-style: italic;
+      border: 2px solid #5b91c3;
+    }
+    .activo {
+      border: 2px solid #3675a9;
+    }
+    .clave::before {
+      content: "🌟";
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      font-size: 1.2rem;
+      color: #2b73b9;
+    }
+  </style>
+</head>
+<body>
+  <img src="logo-up.png" alt="Logo UP" class="logo-up">
+  <h1>Negocios Internacionales - Mari</h1>
+<div class="ciclo"><h2>Ciclo 0</h2><div class="curso bloqueado" id="nivel-mate" onclick="toggleEstado(this)">Nivelación en Matemáticas</div><div class="curso bloqueado" id="nivel-info" onclick="toggleEstado(this)">Nivelación en Informática</div><div class="curso bloqueado" id="nivel-lenguaje" onclick="toggleEstado(this)">Nivelación en Lenguaje</div></div><div class="ciclo"><h2>Ciclo I</h2><div class="curso bloqueado" id="fund-conta" onclick="toggleEstado(this)">Fundamentos de Contabilidad</div><div class="curso bloqueado" id="fund-empresariales" onclick="toggleEstado(this)">Fundamentos de Ciencias Empresariales</div><div class="curso bloqueado" id="mate1" onclick="toggleEstado(this)">Matemáticas I</div><div class="curso bloqueado" id="eco1" onclick="toggleEstado(this)">Economía General I</div><div class="curso bloqueado" id="leng1" onclick="toggleEstado(this)">Lenguaje I</div></div><div class="ciclo"><h2>Ciclo II</h2><div class="curso bloqueado" id="mate-neg" onclick="toggleEstado(this)">Matemática para los Negocios</div><div class="curso bloqueado" id="conta-fin" onclick="toggleEstado(this)">Contabilidad Financiera Intermedia</div><div class="curso bloqueado" id="eco2" onclick="toggleEstado(this)">Economía General II</div><div class="curso bloqueado" id="bloque-sociales" onclick="toggleEstado(this)">Bloque de Ciencias Sociales</div><div class="curso bloqueado" id="leng2" onclick="toggleEstado(this)">Lenguaje II</div></div><div class="ciclo"><h2>Ciclo III</h2><div class="curso bloqueado" id="estadistica1" onclick="toggleEstado(this)">Estadística I</div><div class="curso bloqueado" id="diseno-org" onclick="toggleEstado(this)">Diseño Organizacional y Estrategia</div><div class="curso bloqueado" id="conta-decisiones" onclick="toggleEstado(this)">Contabilidad para la Toma de Decisiones</div><div class="curso bloqueado" id="pensamiento-critico" onclick="toggleEstado(this)">Bloque de Pensamiento Crítico</div><div class="curso bloqueado" id="desarrollo-personal" onclick="toggleEstado(this)">Bloque de Desarrollo Personal</div></div><div class="ciclo"><h2>Ciclo IV</h2><div class="curso bloqueado" id="analitica-datos" onclick="toggleEstado(this)">Analítica de Datos para los Negocios</div><div class="curso bloqueado" id="marketing" onclick="toggleEstado(this)">Marketing Estratégico</div><div class="curso bloqueado" id="fund-finanzas" onclick="toggleEstado(this)">Fundamentos de Finanzas</div><div class="curso bloqueado" id="teoria-com" onclick="toggleEstado(this)">Teoría del Comercio Internacional y Proceso de Integración</div><div class="curso bloqueado" id="procesos-sociales" onclick="toggleEstado(this)">Bloque de Procesos Sociales</div></div><div class="ciclo"><h2>Ciclo V</h2><div class="curso bloqueado" id="multivariado" onclick="toggleEstado(this)">Análisis Multivariado para los Negocios</div><div class="curso bloqueado" id="inv-mercados" onclick="toggleEstado(this)">Investigación de Mercados</div><div class="curso bloqueado" id="fund-econ-org" onclick="toggleEstado(this)">Fundamentos Económicos y Organizacionales para los Negocios</div><div class="curso bloqueado" id="finanzas1" onclick="toggleEstado(this)">Finanzas Corporativas I</div><div class="curso bloqueado" id="inv-academica" onclick="toggleEstado(this)">Investigación Académica</div><div class="curso bloqueado" id="procesos-sociales2" onclick="toggleEstado(this)">Bloque Procesos Sociales</div></div><div class="ciclo"><h2>Ciclo VI</h2><div class="curso bloqueado" id="sistemas-info" onclick="toggleEstado(this)">Sistemas de Información y Análisis de Datos</div><div class="curso bloqueado" id="innovacion" onclick="toggleEstado(this)">Innovación y Gestión en Negocios Digitales</div><div class="curso bloqueado" id="gestion-oferta" onclick="toggleEstado(this)">Gestión Sostenible de la Oferta Exportable</div><div class="curso bloqueado" id="admin-comercio" onclick="toggleEstado(this)">Administración del Comercio Internacional</div><div class="curso bloqueado" id="int-finance" onclick="toggleEstado(this)">International Finance</div></div><div class="ciclo"><h2>Ciclo VII</h2><div class="curso bloqueado" id="logistica" onclick="toggleEstado(this)">Logística Internacional</div><div class="curso bloqueado" id="dir-empresas" onclick="toggleEstado(this)">Dirección Internacional de Empresas</div><div class="curso bloqueado" id="derecho" onclick="toggleEstado(this)">Derecho para los Negocios Internacionales</div><div class="curso bloqueado" id="int-affairs" onclick="toggleEstado(this)">International Affairs</div><div class="curso bloqueado" id="pensamiento-critico2" onclick="toggleEstado(this)">Bloque de Pensamiento Crítico</div></div><div class="ciclo"><h2>Ciclo VIII</h2><div class="curso bloqueado" id="dir-estrategica" onclick="toggleEstado(this)">Dirección Estratégica</div><div class="curso bloqueado" id="gestion-global" onclick="toggleEstado(this)">Gestión de Mercados Globales</div><div class="curso bloqueado" id="cross-cultural" onclick="toggleEstado(this)">Cross Cultural & International Management</div><div class="curso bloqueado" id="negociaciones" onclick="toggleEstado(this)">Negociaciones Comerciales Internacionales</div><div class="curso bloqueado" id="quehacer-cientifico" onclick="toggleEstado(this)">Bloque Quehacer Científico</div></div><div class="ciclo"><h2>Ciclo IX</h2><div class="curso bloqueado" id="inv-aplicada" onclick="toggleEstado(this)">Investigación Aplicada en Negocios Internacionales</div><div class="curso bloqueado" id="estrategias" onclick="toggleEstado(this)">Estrategias de Internacionalización</div><div class="curso bloqueado" id="hr-management" onclick="toggleEstado(this)">International Human Resources Management</div><div class="curso bloqueado" id="proyeccion-social" onclick="toggleEstado(this)">Proyección Social</div></div><div class="ciclo"><h2>Ciclo X</h2><div class="curso bloqueado" id="business-plan" onclick="toggleEstado(this)">International Business Plan</div><div class="curso bloqueado" id="etica" onclick="toggleEstado(this)">Ética</div></div>
+<script>
+  function toggleEstado(el) {
+    if (el.classList.contains('bloqueado')) {
+      el.classList.remove('bloqueado');
+      el.classList.add('desbloqueado');
+    } else if (el.classList.contains('desbloqueado')) {
+      el.classList.remove('desbloqueado');
+      el.classList.add('encurso');
+    } else if (el.classList.contains('encurso')) {
+      el.classList.remove('encurso');
+      el.classList.add('completado');
+    } else if (el.classList.contains('completado')) {
+      el.classList.remove('completado');
+      el.classList.add('bloqueado');
+    }
+  }
+</script>
+</body>
+</html>
