@@ -96,7 +96,7 @@
     "eco1": ["eco2"],
     "leng1": ["leng2"],
     "conta-fin": ["conta-decisiones"],
-    "estadistica1": ["analitica-datos", "finanzas1"],
+    "estadistica1": ["analitica-datos", "finanzas1", "admin-comercio"],
     "fund-finanzas": ["finanzas1"],
     "eco2": ["teoria-com"],
     "leng2": ["procesos-sociales", "procesos-sociales2"],
@@ -136,27 +136,29 @@
   function verificarDesbloqueos() {
     document.querySelectorAll(".curso").forEach((curso) => {
       const id = curso.id;
-      if (curso.classList.contains("bloqueado") && requisitosCumplidos(id)) {
-        curso.classList.remove("bloqueado");
-        curso.classList.add("desbloqueado");
-      }
-    });
-  }
+      if (curso.classList.contains("bloqueado")) {
+        const requisitos = Object.entries(dependencias)
+          .filter(([clave, deps]) => deps.includes(id))
+          .map(([clave]) => clave);
 
-  function requisitosCumplidos(id) {
-    const reqs = Object.entries(dependencias)
-      .filter(([clave, deps]) => deps.includes(id))
-      .map(([clave]) => clave);
-    return reqs.every((reqId) => {
-      const el = document.getElementById(reqId);
-      return el && el.classList.contains("completado");
+        const todosCumplidos = requisitos.every((reqId) => {
+          const el = document.getElementById(reqId);
+          return el && el.classList.contains("completado");
+        });
+
+        if (todosCumplidos) {
+          curso.classList.remove("bloqueado");
+          curso.classList.add("desbloqueado");
+        }
+      }
     });
   }
 
   window.onload = () => {
     document.querySelectorAll(".curso").forEach((curso) => {
       const id = curso.id;
-      if (!Object.keys(dependencias).includes(id)) {
+      const esDependencia = Object.values(dependencias).flat().includes(id);
+      if (!esDependencia) {
         curso.classList.remove("bloqueado");
         curso.classList.add("desbloqueado");
       }
